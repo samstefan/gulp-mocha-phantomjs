@@ -10,7 +10,7 @@ var extend = require('./extend');
 
 function mochaPhantomJS(options) {
   options = options || {};
-  var scriptPath = lookup('mocha-phantomjs/lib/mocha-phantomjs.coffee');
+  var scriptPath = lookup(options.scriptPath);
 
   if (!scriptPath) {
     throw new gutil.PluginError(pluginName, 'mocha-phantomjs.coffee not found');
@@ -50,6 +50,8 @@ function crossPlatform(str) {
 }
 
 function spawnPhantomJS(args, options, cb) {
+  console.log('args:', args)
+
   // in case npm is started with --no-bin-links
   var phantomjsPath = lookup('.bin/phantomjs', true) || lookup('phantomjs/bin/phantomjs', true);
 
