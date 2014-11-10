@@ -74,7 +74,7 @@ function spawnPhantomJS(args, options, cb) {
     if (code === 0 || options.silent) {
       cb();
     } else {
-      cb(new gutil.PluginError(pluginName, 'test failed'));
+      throw 'test failed'
     }
   });
 }
