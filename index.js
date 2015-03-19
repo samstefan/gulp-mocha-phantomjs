@@ -26,7 +26,7 @@ function mochaPhantomJS(options) {
 
     spawnPhantomJS(args, options, function (err) {
       if (err) {
-        this.emit('error', err);
+        throw err;
       }
 
       this.push(file);
@@ -74,7 +74,7 @@ function spawnPhantomJS(args, options, cb) {
     if (code === 0 || options.silent) {
       cb();
     } else {
-      throw 'test failed'
+      cb(new Error('Test failed: ' + options.task));
     }
   });
 }
